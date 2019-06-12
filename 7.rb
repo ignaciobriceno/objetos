@@ -15,7 +15,7 @@ def clean_data(data)
 		new_data << array
 	end
     new_file = File.open('new_catalogo.txt', 'w')
-    new_file.puts new_data
+    new_file.print new_data
     new_file.close
 
 end
