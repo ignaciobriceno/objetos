@@ -13,15 +13,15 @@ class Product
 
 end
 
-file = File.open('catalogo.txt', 'r')  
-data = file.readlines
-file.close
-
 products_list = []
-data.each do |line|
-	ls = line.split(', ')
+data = []
+File.open('catalogo.txt', 'r'){|file| data = file.readlines}
+data.each do |prod|
+	ls = prod.split(', ')
 	products_list << Product.new(*ls)
 end
+
+
 
 products_list.each do |product|
 	puts product.average

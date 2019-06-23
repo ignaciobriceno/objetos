@@ -1,25 +1,19 @@
-file = File.open('catalogo.txt', 'r')  
-data = file.readlines
-file.close
-
-products_list = []
-data.each do |line|
-	ls = line.split(', ')
-	products_list << ls
-end
-
-def clean_data(data)
-	new_data = []
-	data.each do |array|
-		array.delete_at(4)
-		new_data << array
-	end
-    new_file = File.open('new_catalogo.txt', 'w')
-    new_file.print new_data
-    new_file.close
+class Product
+  def self.new_file(file)
+    data = File.open(file,'r').readlines
+    products_list = []
+   	data.each do |prod|
+   		ls = prod.split(', ')
+   		ls.delete_at(3)
+   		products_list << ls
+   	end
+   	file = File.open('new_catalogo.txt','w')
+   	products_list.each { |prod| file.puts "#{prod.join(',')}"}
+   	file.close
+  end
 
 end
 
-clean_data(products_list)
+Product.new_file('catalogo.txt')
 
 
